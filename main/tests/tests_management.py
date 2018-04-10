@@ -27,23 +27,6 @@ class ManagementTestCase(TestCase):
         self.user = self.oh_member.user
         self.user.save()
 
-    @vcr.use_cassette('main/tests/fixtures/process_file.yaml',
-                      record_mode='none')
-    def test_management_process_file(self):
-        with requests_mock.Mocker() as m:
-            m.register_uri("GET",
-                           "https://www.openhumans.org/api/direct-sharing/project/exchange-member/?access_token=myaccesstoken",
-                           json={'data':
-                                 [{'id': 34567,
-                                   'basename': '23andme_valid.txt',
-                                   'created': '2018-03-30T00:09:36.563486Z',
-                                   'download_url': 'https://myawslink.com/member-files/direct-sharing-1337/1234/23andme_valid.txt?Signature=nope&Expires=1522390374&AWSAccessKeyId=nope',
-                                   'metadata': {'tags': ['bar'], 'description': 'foo'},
-                                   'source': 'direct-sharing-1337'}]})
-            m.register_uri("POST",
-                           "https://www.openhumans.org/api/direct-sharing/project/files/delete/?access_token=myaccesstoken")
-            call_command('process_files')
-
     @vcr.use_cassette('main/tests/fixtures/import_test_file.yaml',
                       record_mode='none')
     def test_management_import_user(self):

@@ -11,5 +11,4 @@ urlpatterns = [
     url(r'^about/?$', views.about, name='about'),
     url(r'^list/?$', views.list_files, name='list'),
     url(r'^delete/(?P<file_id>\w+)/?$', views.delete_file, name='delete'),
-    url(r'^trigger_processing/?$', views.trigger, name='trigger'),
 ]

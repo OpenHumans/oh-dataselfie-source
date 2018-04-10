@@ -16,18 +16,18 @@
       <h3>Upload your data </h3>
         {% for file in files %}
         <div class="form-group">
-          <label for="{% concatenate "taxonomy" file.id %}">Taxonomy</label>
-          <textarea rows="3" class="form-control" id="{% concatenate "taxonomy" file.id %}" placeholder="Copy and Paste from uBiome page"></textarea>
+          <label for="{% concatenate "file_desc" file.id %}">Description of the data (type of data, sampling date etc.)</label>
+          <textarea rows="3" class="form-control" id="{% concatenate "file_desc" file.id %}" placeholder="Your description goes here"></textarea>
         </div>
         <div class="form-group">
-          <label for="{% concatenate "file_desc" file.id %}">Additional Description</label>
+          <label for="{% concatenate "tags" file.id %}">Tags for your data</label>
           <input type="text" class="form-control"
-              name="{% concatenate "file_desc" file.id %}"
-              id="{% concatenate "file_desc" file.id %}"
-              placeholder="Optional Description (Sampling date/location etc.)">
+              name="{% concatenate "tags" file.id %}"
+              id="{% concatenate "tags" file.id %}"
+              placeholder="Give a comma-separated list of descriptive tags">
         </div>
         <div class="form-group">
-          <label for="{% concatenate "file" file.id %}">Sequence File</label>
+          <label for="{% concatenate "file" file.id %}">Data File</label>
           <input type="file" name="{% concatenate "file" file.id %}"
                id="{% concatenate "file" file.id %}">
          </div>

@@ -28,8 +28,6 @@ requests = "*"
 "urllib3" = "*"
 whitenoise = "*"
 requests-mock = "*"
-celery = "*"
-redis = "*"
 open-humans-api = "*"
 
 
