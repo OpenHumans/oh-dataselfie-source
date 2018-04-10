@@ -1,7 +1,7 @@
 {
   "name": "Open Humans Data Uploader",
   "description": "A web app to support data uploads to an Open Humans project",
-  "repository": "https://github.com/OpenHumans/oh-ubiome-source",
+  "repository": "https://github.com/OpenHumans/oh-dataselfie-source",
   "keywords": ["django"],
   "scripts": {
     "postdeploy": "python manage.py init_proj_config"
