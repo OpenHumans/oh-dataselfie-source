@@ -20,7 +20,7 @@ function startUpload() {
     var data = file.fields;
     var tags = document.getElementById('tags_'+file.pk).value;
     tags = tags.split(',');
-    tags = tags.map(function (i) {return i.trim()});
+    tags = tags.map(function (i) {return i.trim()};);
     tags.push('data-selfie');
     var description = document.getElementById('file_desc_'+file.pk).value;
     var metadata = {'tags': tags,
