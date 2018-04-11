@@ -1,11 +1,8 @@
-Thanks for connecting to *Open Humans*. You can now upload your *uBiome* data. Below you can find a simple step-by-step guide to get access to the raw data file that we expect as input.
+Thanks for connecting to *Open Humans*. You can now upload your *Data Selfies*.
 
 ## How-to
-
-- Login into *uBiome* and go to [https://explorer.ubiome.com/explore](https://explorer.ubiome.com/explore)
-- In the top left select the sample you want to upload to *Open Humans*
-- Select *Advanced features* from the menu bar on the resulting page and go to *Downloads*
-- Download the *Sequence Data* file. This will result in a zipped archive on your computer
-- Upload this file on this page.
-- Additionally: Select *Download Taxonomy (JSON)* on the *uBiome* page and copy & paste the content in the *Taxonomy* field here
-- Optionally: Add any additional information in the description field.
+For each file provide:
+- A description of the file you're about to upload (What's in the file? When was it sampled? How was the data collected?)
+- Give some tags that are keywords describing your data
+- Select the file you want to upload
+- Optionally: Rinse & Repeat to upload more data.
