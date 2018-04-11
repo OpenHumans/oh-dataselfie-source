@@ -207,7 +207,9 @@ class UploadTestCase(TestCase):
         test_file = BytesIO(b'mybinarydata')
         test_file.name = 'myimage.jpg'
         response = c.post("/complete/",
-                          {'file_1': test_file},
+                          {'file_1': test_file,
+                           'file_desc_1': 'foo',
+                           'tags_1': 'bar,baz'},
                           follow=True)
         self.assertRedirects(response,
                              "/overview",

@@ -18,16 +18,18 @@ function startUpload() {
   $("#infotext").replaceWith('<div id="upload_form">' + replacement + '</div>');
   file_metadata.forEach(function (file) {
     var data = file.fields;
-    var taxonomy = document.getElementById('taxonomy_'+file.pk).value;
-    var user_notes = document.getElementById('file_desc_'+file.pk).value;
-    var metadata = {'tags': JSON.parse(data.tags),
-                    'description': data.description,
-                    'user_notes': user_notes};
-    uploadFile(file.pk, JSON.stringify(metadata), taxonomy);
+    var tags = document.getElementById('tags_'+file.pk).value;
+    tags = tags.split(',');
+    tags = tags.map(function (i) {return i.trim();});
+    tags.push('data-selfie');
+    var description = document.getElementById('file_desc_'+file.pk).value;
+    var metadata = {'tags': tags,
+                    'description': description};
+    uploadFile(file.pk, JSON.stringify(metadata));
   });
 }
 
-function uploadFile(id, metadata, taxonomy) {
+function uploadFile(id, metadata) {
   var files = document.getElementById('file_'+id).files;
   if (!files.length) {
     return;
@@ -36,41 +38,36 @@ function uploadFile(id, metadata, taxonomy) {
   xhr.open('POST', oh_direct_upload_url+"?access_token="+access_token, true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.send('project_member_id='+member_id+'&filename='+file.name+'&metadata='+metadata);
-  xhr.onreadystatechange = function(){putFile(xhr, taxonomy);};
+  xhr.onreadystatechange = function(){putFile(xhr);};
 }
 
-function putFile(e, taxonomy) {
+function putFile(e) {
   if (xhr.readyState === 4 && xhr.status === 201) {
     response = JSON.parse(xhr.responseText);
     put_xhr.open('PUT', response.url, true);
     put_xhr.setRequestHeader('Content-type','');
     put_xhr.send(file);
-    put_xhr.onreadystatechange = function(){uploadedFile(put_xhr, taxonomy);};
+    put_xhr.onreadystatechange = function(){uploadedFile(put_xhr);};
   } else {
     console.log('checking status of upload url XHR');
   }
 }
 
-function uploadedFile(e, taxonomy) {
+function uploadedFile(e) {
   if (put_xhr.readyState === 4 && put_xhr.status === 200) {
     finish_xhr.open('POST', oh_direct_upload_complete_url+"?access_token="+access_token, true);
     finish_xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     finish_xhr.send('project_member_id='+member_id+'&file_id='+response.id);
-    console.log(taxonomy);
-    finish_xhr.onreadystatechange = function(){finishedFile(finish_xhr, taxonomy);};
+    finish_xhr.onreadystatechange = function(){finishedFile(finish_xhr);};
   } else {
     console.log('checking status of upload XHR');
   }
 }
 
-function finishedFile(e, taxonomy) {
+function finishedFile(e) {
       if (finish_xhr.readyState === 4 && finish_xhr.status === 200) {
         console.log('uploaded file');
         console.log(response);
-        console.log(taxonomy);
-        trigger_xhr.open('POST', "/trigger_processing/", true);
-        trigger_xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        trigger_xhr.send('access_token='+access_token+'&file_id='+response.id+'&taxonomy='+taxonomy+'&csrfmiddlewaretoken='+csrf_token);
         var done = "<h3>Upload successful.</h3>";
         $("#upload_form").replaceWith('<div id="upload_form">'+done+'</div>');
       } else {
