@@ -1,9 +1,6 @@
-# Upload your uBiome data to *Open Humans*
-*uBiome* is a biotechnology company based in San Francisco that gives individuals
-and organizations access to sequencing technology to sequence their microbiomes
-with a sampling kit and website.
-If you have had your microbiomes sequenced via *uBiome* you can now add this data
-to your Open Humans account too.
+# Upload a *Data Selfie* data to *Open Humans*
+Do you a have a data type that *Open Humans* does not support yet with a dedicated project?
+Upload any files you want to your Data Selfie: Lab results, instrument data, and medical imaging are examples of data you might want to share.
 
 To get started all you have to do is login into *Open Humans*, authorize this
 integration and upload your *uBiome* data files.  
